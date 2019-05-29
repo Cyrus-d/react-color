@@ -1,5 +1,4 @@
-export const calculateChange = (e, skip, props, container) => {
-  e.preventDefault()
+export const calculateChange = (e, direction, hsl, container) => {
   const containerWidth = container.clientWidth
   const containerHeight = container.clientHeight
   const x = typeof e.pageX === 'number' ? e.pageX : e.touches[0].pageX
@@ -7,7 +6,7 @@ export const calculateChange = (e, skip, props, container) => {
   const left = x - (container.getBoundingClientRect().left + window.pageXOffset)
   const top = y - (container.getBoundingClientRect().top + window.pageYOffset)
 
-  if (props.direction === 'vertical') {
+  if (direction === 'vertical') {
     let h
     if (top < 0) {
       h = 359
@@ -18,12 +17,12 @@ export const calculateChange = (e, skip, props, container) => {
       h = ((360 * percent) / 100)
     }
 
-    if (props.hsl.h !== h) {
+    if (hsl.h !== h) {
       return {
         h,
-        s: props.hsl.s,
-        l: props.hsl.l,
-        a: props.hsl.a,
+        s: hsl.s,
+        l: hsl.l,
+        a: hsl.a,
         source: 'rgb',
       }
     }
@@ -38,12 +37,12 @@ export const calculateChange = (e, skip, props, container) => {
       h = ((360 * percent) / 100)
     }
 
-    if (props.hsl.h !== h) {
+    if (hsl.h !== h) {
       return {
         h,
-        s: props.hsl.s,
-        l: props.hsl.l,
-        a: props.hsl.a,
+        s: hsl.s,
+        l: hsl.l,
+        a: hsl.a,
         source: 'rgb',
       }
     }
